@@ -15,8 +15,14 @@ TrelloClone.Views.NewBoardForm = Backbone.View.extend({
   addBoard: function(event) {
     event.preventDefault();
     var params = $(event.currentTarget).parent().serializeJSON();
-    this.collection.create(params);
-    Backbone.history.navigate("", true);
+    var newBoard = new TrelloClone.Models.Board(params["board"]);
+    var that = this;
+    this.collection.add(newBoard, {
+      success: function() {
+        Backbone.history.navigate("#/boards/"+ that.collection.last().id, true)
+      }
+    });
+
   }
 
 })

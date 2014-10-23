@@ -1,0 +1,7 @@
+<h2> Create new list</h2>
+<form class="new-list">
+  <input type="hidden" name="list[board_id]" class="board-id" value="<%= board.escape("id") %>">
+  <label for="list-name">Title</label>
+  <input type="text" name="list[title]" id="list-name">
+  <button class="add-list">Addlist</button>
+</form>
