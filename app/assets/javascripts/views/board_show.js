@@ -6,8 +6,9 @@ TrelloClone.Views.BoardShow = Backbone.View.extend({
   events: {
     "click button.new-card": "renderCardForm",
     "click button.add-card": "postCard",
-    "click button.delete-card": "deleteCard"
-  },
+    "click button.delete-card": "deleteCard",
+    "click button.new-list-link": "showListForm"
+    },
 
   initialize: function() {
     this.listenTo(this.model, "sync add remove", this.render);
@@ -56,21 +57,24 @@ TrelloClone.Views.BoardShow = Backbone.View.extend({
     });
   },
 
+  showListForm: function(event) {
+    var $parent = $(event.currentTarget).parent();
+    $parent.empty();
+    var listForm = JST["newlist"]({
+      board: this.model
+    });
+    $parent.html(listForm);
+
+
+  },
+
+
+
   addSortable: function() {
     $("ul#sortable").sortable({
       connectWith: ".connectedSortable",
-      placeholder: "card-place-highlight",
-      update: function (event, ui) {
-        var data = $(this).sortable('serialize');
-        debugger
-        $.ajax({
-          data: data,
-          type: 'POST',
-          url: '/your/url/here'
-        });
-      }
+      placeholder: "card-place-highlight"
     }).disableSelection();
   }
-
 
 })

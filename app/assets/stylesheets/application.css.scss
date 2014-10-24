@@ -78,11 +78,6 @@ div.card-el:hover {
   background: #F0F0F0;
 };
 
-h1.board-title{
-  color: white;
-  font-size: 24px;
-  margin: 14px;
-}
 
 li.list-title {
   font-weight: bold;
@@ -136,6 +131,46 @@ li.new-list:hover {
   background: #345170;
   transition: 0.1s;
 }
+
+li.board-el {
+  float: left;
+  background: white;
+  margin: 10px 50px;
+  width: 20%;
+  height: 50px;
+  border-radius: 2px;
+  font-weight: bold;
+}
+
+li.board-el > a {
+  display: block;
+  margin: 5px 10px;
+  font-size: 15px;
+}
+
+li.board-el:hover {
+  button.delete-board {
+
+    display: block;
+    float: right;
+  }
+}
+
+h1.board-title {
+  color: white;
+  font-size: 24px;
+  margin: 14px;
+}
+button.delete-board {
+  display: none;
+  border: 0;
+  padding: 0;
+  background: inherit;
+  color: #929292;
+}
+
+
+
 
 
 
