@@ -1,12 +1,32 @@
-<h1><%= board.escape("title") %></h1>
-<% board.lists().each(function(list) { %>
-  <li><%= list.escape("title") %></li>
-  <ul><% list.cards().each(function(card) {%>
-    <li><%= card.escape("title") %> - <%= card.escape("description") %></li>
-    <% }) %></ul>
-<% }) %>
+<h1 class="board-title"><%= board.escape("title") %></h1>
 
-<a href="#/boards/<%= board.escape("id") %>/new">Create new list</a>
+<% board.lists().each(function(list) { %>
+  <div class="list-element sortable">
+    <li class="list-title"><%= list.escape("title") %></li>
+    <ul id="sortable" class="connectedSortable"><% list.cards().each(function(card) {%>
+      <div class="card-el" id="<%= card.escape("ord") %>">
+        <li>
+          <%= card.escape("title") %> - <%= card.escape("description") %>
+          <button class="delete-card" id="<%= card.escape("id")%>" data-list="<%= list.escape("id") %>">
+            Delete
+          </button>
+        </li>
+      </div>
+      <% }) %>
+    </ul>
+      <div class="create-card">
+        <input type="hidden" class="list-id" value="<%= list.escape("id") %>">
+        <button class="new-card">Add Card...</button>
+      </div>
+    </div>
+<% }) %>
+  <li class="new-list">
+    <a href="#/boards/<%= board.escape("id") %>/new" class="new-list-link">
+      Add a list...
+    </a>
+  </li>
+
+
 
 
 

@@ -1,4 +1,4 @@
-require File.expand_path('../boot', __FILE__)
+  require File.expand_path('../boot', __FILE__)
 
 # Pick the frameworks you want:
 require "active_record/railtie"
@@ -24,5 +24,7 @@ module TrelloClone
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    config.secret_key_base = 'bb731a7646d54d3bc0e00bc1a9854a73dc24640ceafe7191a601d29933d976ab79e2083edc741a14179a322ef146bc3669471069c6ba8ad22eb9fc44811731a2'
+    config.assets.paths << 'app/assets/templates'
   end
 end

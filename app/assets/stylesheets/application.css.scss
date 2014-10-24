@@ -15,3 +15,127 @@
 
 @import "bootstrap";
 @import "font-awesome";
+
+ul {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  list-style: none;
+}
+
+li {
+  list-style: none;
+}
+div.list-element{
+  float: left;
+}
+
+button.delete-card {
+  display: none;
+}
+
+div.card-el:hover {
+  button.delete-card {
+    display: block;
+    float: right;
+  }
+}
+
+div.list-element{
+  width: 260px;
+  background: #e2e2e2;
+  border-radius: 4px;
+  margin: 10px;
+}
+
+body {
+  background: #23719F;
+}
+
+div.card-el {
+  background: white;
+  padding: 5px;
+  margin: 2px 7px 5px;
+  border-radius: 2px;
+  box-shadow: 0 1px 0px #cbcbcb;
+}
+
+.card-place-highlight {
+  height: 30px;
+  padding: 5px;
+  margin: 7px 5px;
+  border-radius: 2px;
+  background: #c2c2c2;
+  border: none;
+
+}
+
+div.card-el:active {
+  transform: rotate(5deg);
+}
+
+div.card-el:hover {
+  background: #F0F0F0;
+};
+
+h1.board-title{
+  color: white;
+  font-size: 24px;
+  margin: 14px;
+}
+
+li.list-title {
+  font-weight: bold;
+  font-size: 14px;
+  margin: 9px;
+  border: 0;
+  padding: 0;
+
+}
+
+button.delete-card{
+  border: 0;
+  padding: 0;
+  background: inherit;
+  color: #929292;
+}
+button.new-card {
+  border: 0;
+  padding: 0;
+  color: #929292;
+  background: inherit;
+  padding: 2px;
+  margin: 4px;
+}
+
+#sortable:hover {
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+#sortable:active {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+};
+
+div.create-card:hover{
+ background: #c2c2c2;
+ border-radius: 0 0 4px 4px;
+}
+
+li.new-list {
+  float: left;
+  width: 260px;
+  border-radius: 4px;
+  background: #40658b;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 4px;
+}
+
+li.new-list:hover {
+  background: #345170;
+  transition: 0.1s;
+}
+
+
+
