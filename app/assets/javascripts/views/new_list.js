@@ -1,19 +1,20 @@
 TrelloClone.Views.NewList = Backbone.View.extend({
   template: JST["newlist"],
   events: {
-    "click .add-list": "addList"
+    "click add-list": "addList"
   },
 
   render: function() {
     var newListView = this.template({
       board: this.model
     });
-
+    debugger
     this.$el.html(newListView);
     return this;
   },
 
   addList: function(event) {
+    event.preventDefault();
     var params = $(event.currentTarget).parent().serializeJSON()
     var newList = new TrelloClone.Models.List(params["list"]);
     var that = this;

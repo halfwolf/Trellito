@@ -7,7 +7,8 @@ TrelloClone.Views.BoardShow = Backbone.View.extend({
     "click button.new-card": "renderCardForm",
     "click button.add-card": "postCard",
     "click button.delete-card": "deleteCard",
-    "click button.new-list-link": "showListForm"
+    "click button.new-list-link": "showListForm",
+    "click button.add-list": "addList"
     },
 
   initialize: function() {
@@ -64,11 +65,25 @@ TrelloClone.Views.BoardShow = Backbone.View.extend({
       board: this.model
     });
     $parent.html(listForm);
+    debugger
 
 
   },
-
-
+  
+  addList: function(event) {
+    
+    event.preventDefault();
+    var params = $(event.currentTarget).parent().serializeJSON()
+    var newList = new TrelloClone.Models.List(params["list"]);
+    var that = this;
+    var lists = TrelloClone.boards.getOrFetch(params.list.board_id).lists();
+    
+    lists.create(newList, {
+      success: function() {
+        Backbone.history.navigate("#/boards/"+ newList.attributes.board_id, true)
+      }
+    });
+  },
 
   addSortable: function() {
     $("ul#sortable").sortable({
