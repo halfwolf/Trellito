@@ -3,7 +3,8 @@
 <% board.lists().each(function(list) { %>
   <div class="list-element sortable">
     <li class="list-title"><%= list.escape("title") %></li>
-    <ul id="sortable" class="connectedSortable"><% list.cards().each(function(card) {%>
+    <ul id="sortable" class="connectedSortable" data-list="<%= list.escape("id") %>">
+    <% list.cards().each(function(card) {%>
       <div class="card-el" id="<%= card.escape("ord") %>">
         <li>
           <%= card.escape("title") %> - <%= card.escape("description") %>
@@ -25,8 +26,3 @@
       Add a list...
     </a>
   </li>
-
-
-
-
-

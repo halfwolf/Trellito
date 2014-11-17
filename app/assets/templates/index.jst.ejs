@@ -1,4 +1,4 @@
-<h1 class="board-title">Ur Burds</h1>
+<h1 class="board-title">Your Boards</h1>
 <% boards.each(function(board) { %>
   <li class="board-el">
     <a href="#/boards/<%= board.escape("id") %>">
@@ -10,5 +10,5 @@
   </li>
 <% }); %>
 <a href="#/boards/new" class="new-board-link">
-  Create new burd
+  Create new board
 </a>

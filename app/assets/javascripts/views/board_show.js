@@ -69,15 +69,15 @@ TrelloClone.Views.BoardShow = Backbone.View.extend({
 
 
   },
-  
+
   addList: function(event) {
-    
+
     event.preventDefault();
     var params = $(event.currentTarget).parent().serializeJSON()
     var newList = new TrelloClone.Models.List(params["list"]);
     var that = this;
     var lists = TrelloClone.boards.getOrFetch(params.list.board_id).lists();
-    
+
     lists.create(newList, {
       success: function() {
         Backbone.history.navigate("#/boards/"+ newList.attributes.board_id, true)
@@ -85,10 +85,56 @@ TrelloClone.Views.BoardShow = Backbone.View.extend({
     });
   },
 
+  updateLists: function(event, ui) {
+    var board = this.model
+    var modelId = ui.item.children().children()[0].id;
+    var removerId = ui.item.children().children()[0].dataset.list;
+    var model = board.lists().getOrFetch(removerId).cards().get(modelId);
+    var listId = event.target.dataset.list
+    model.attributes.list_id = listId
+    var receiver = board.lists().getOrFetch(listId)
+    receiver.cards().add(model);
+    model.save();
+    this.updateOrder($(event.target).children(), receiver)
+    // var order = 1
+    // $(event.target).children().each(function() {
+    //   var id = $(this).children().children()[0].id
+    //   var model = receiver.cards().get(id);
+    //   model.attributes.ord = order
+    //   model.save()
+    //   order += 1
+    // })
+
+
+  },
+
+
+  updateOrder: function($cards, list) {
+    var order = 1;
+    $cards.each(function() {
+      var id = $(this).children().children()[0].id
+      var model = list.cards().get(id);
+      model.attributes.ord = order
+      model.save()
+      order += 1
+    })
+
+  },
+
+  updateList: function(event, ui) {
+    var listId = event.target.dataset.list
+    var list = this.model.lists().getOrFetch(listId)
+    this.updateOrder($(event.target).children(), list)
+  },
+
   addSortable: function() {
+    var that = this
     $("ul#sortable").sortable({
       connectWith: ".connectedSortable",
-      placeholder: "card-place-highlight"
+      placeholder: "card-place-highlight",
+      receive: that.updateLists.bind(that),
+      update: that.updateList.bind(that)
+
     }).disableSelection();
   }
 
